@@ -1,0 +1,18 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package tests
+        run: swift test --package-path Packages/WritewellKit
+      - name: Generate project
+        run: brew install xcodegen && xcodegen generate
+      - name: Build app
+        run: xcodebuild -project Writewell.xcodeproj -scheme Writewell -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO build

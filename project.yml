@@ -1,0 +1,54 @@
+name: Writewell
+options:
+  bundleIdPrefix: app.writewell
+  deploymentTarget:
+    macOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.0.1"
+    CURRENT_PROJECT_VERSION: "1"
+packages:
+  WritewellKit:
+    path: Packages/WritewellKit
+targets:
+  Writewell:
+    type: application
+    platform: macOS
+    sources:
+      - App/Sources
+    dependencies:
+      - package: WritewellKit
+        products: [MarkdownCore, EditorKit, Workspace, Export, Themes]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.writewell.Writewell
+        ENABLE_HARDENED_RUNTIME: YES
+        GENERATE_INFOPLIST_FILE: NO
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Writewell
+        LSApplicationCategoryType: public.app-category.productivity
+        NSPrincipalClass: NSApplication
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: Markdown Document
+            CFBundleTypeRole: Editor
+            LSHandlerRank: Default
+            LSItemContentTypes: [net.daringfireball.markdown]
+            NSDocumentClass: $(PRODUCT_MODULE_NAME).MarkdownFileDocument
+        UTImportedTypeDeclarations:
+          - UTTypeIdentifier: net.daringfireball.markdown
+            UTTypeDescription: Markdown Document
+            UTTypeConformsTo: [public.plain-text]
+            UTTypeTagSpecification:
+              public.filename-extension: [md, markdown, mdown, mkd]
+schemes:
+  Writewell:
+    build:
+      targets:
+        Writewell: all
+    test:
+      targets:
+        - package: WritewellKit/MarkdownCoreTests
