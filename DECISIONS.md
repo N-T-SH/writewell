@@ -14,7 +14,7 @@ The record of product and technical choices. Each section further down lists the
 | D-6 | Parser | **swift-markdown** (cmark-gfm), with custom inline extensions for math, wiki-links and highlights | cmark-gfm has no math or wiki-link support, so those are our own inline pass. |
 | D-7 | Typography | **Small curated set, user picks, sensible defaults** | Roughly 3 body fonts and 2 mono fonts, all open-licensed and bundled. No arbitrary system-font picker. |
 | D-8 | Themes | **One house theme**, light + dark | |
-| D-9 | Character | **(2)** curated typography, **(3)** distinctive caret and subtle motion, **(4)** writing-session stats, **(5)** zero-chrome mode, **(7)** clarity hints (off by default) | Typewriter scrolling and focus mode were not picked, so they are out of v1. Sound is out. |
+| D-9 | Character | **(2)** curated typography, **(3)** distinctive caret and subtle motion, **(4)** writing-session stats, **(5)** zero-chrome mode | Typewriter scrolling, focus mode and sound were not picked. Clarity hints (7) were picked, then deferred with D-21 on 2026-11-23. |
 | D-10 | Images | **Copy into `./assets/`** next to the file | |
 | D-11 | Export | **HTML + PDF + rich text, plus Pandoc formats when Pandoc is installed** | Fine to skip in v1. |
 | D-12 | Min macOS | **macOS 26 Tahoe** | Native Liquid Glass. TextKit 2 at its most mature. |
@@ -26,8 +26,8 @@ The record of product and technical choices. Each section further down lists the
 | D-18 | Settings | **Very few settings** | |
 | D-19 | Repo | **`N-T-SH/writewell`, public** | |
 | D-20 | Telemetry | **None** (default; not discussed) | |
-| D-21 | AI | **Bring-your-own-key assistant, after v1** | Built on clarity research; see [AI assistant notes](#ai-assistant-notes). |
-| D-22 | Name | **Checked; see findings below** | Name is not unique in the writing-tools category. |
+| D-21 | AI | **Deferred**: no AI assistant and no local clarity helper for now | Research notes kept below for when this is picked up. |
+| D-22 | Name | **Rename to a coined word; shortlist below** | "WriteWell" is already used by other writing tools. |
 
 ### Open tensions to resolve later
 - **D-7 vs D-9(2):** D-9 option 2 said "no font picker in v1". D-7 chose a picker. Resolved as a *curated* picker: a few hand-picked fonts with one clear default.
@@ -42,7 +42,20 @@ What this means for Writewell:
 1. **The assistant edits for clarity; it doesn't write for you.** Its main jobs are "find the actor and action", "untangle this sentence" and "what is the point of this paragraph?". It is not a "write a paragraph about X" tool.
 2. **Suggestions are diffs the writer accepts, never silent rewrites.** The text stays the writer's.
 3. **The model's own output must pass the same checks.** Prompt against compression: prefer explicit "that", short dependencies, verbs over nominalizations, animate subjects. Length is not a goal.
-4. **D-9(7) clarity hints can ship first and need no AI.** A local, deterministic linter flags nominalizations, stacked nouns (3+), long subject–verb gaps and inanimate-agent verbs, using a dependency parse or heuristics. This gives most of the value with zero network and zero privacy cost, and the BYOK assistant later builds on it.
+4. **(Deferred.) Clarity hints could ship first and need no AI.** A local, deterministic linter flags nominalizations, stacked nouns (3+), long subject–verb gaps and inanimate-agent verbs, using a dependency parse or heuristics. This gives most of the value with zero network and zero privacy cost, and the BYOK assistant later builds on it.
+
+### D-22 name shortlist (2026-11-23)
+Checked against App Store and web search results only (no trademark search):
+
+| Name | Meaning | Conflicts found |
+|---|---|---|
+| **Fleuron** ★ | The printer's flower ornament ❦ | None found for apps |
+| Inkmere | Coined: a "mere" (small lake) of ink | None found |
+| Ductus | The order and direction of pen strokes in lettering | None found for apps |
+| Lettrine | A drop cap, in French and in typography | Only a LaTeX package of that name |
+| Proza | "Prose" in Polish and Dutch | None found for apps; a Google font is named Proza Libre |
+
+Ruled out because apps already use them: Inklet, Margo (a Markdown editor), Quillo, Tintly, Folia, Scrivo, Inkwell, Penna, Inkora.
 
 ### D-22 name check findings (2026-11-23)
 - **No Mac Markdown editor called Writewell found** in App Store or web results.

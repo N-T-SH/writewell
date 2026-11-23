@@ -22,9 +22,8 @@ A writing tool, not a note database. You open a `.md` file (or a folder of them)
    - a distinctive caret and subtle motion
    - a zero-chrome window that is just paper
    - writing-session stats
-   - optional clarity hints
 
-**Non-goals for v1:** collaboration, plugins *(D-17)*, iOS, built-in sync *(D-16)*, a backlinks or graph view, a WYSIWYG table editor, an AI assistant (after v1, *D-21*), Pandoc export (after v1, *D-11*).
+**Non-goals for v1:** collaboration, plugins *(D-17)*, iOS, built-in sync *(D-16)*, a backlinks or graph view, a WYSIWYG table editor, AI features or clarity hints (deferred, *D-21*), Pandoc export (after v1, *D-11*).
 
 ## 2. Who it is for
 
@@ -114,13 +113,12 @@ Target: **macOS 26 Tahoe and later**, Swift 6, Apple silicon and Intel.
 
 ### v1.0 — "Ship it"
 - Mermaid diagrams.
-- Clarity hints (D-9(7)), off by default. A local, deterministic linter that needs no AI flags nominalizations, stacked nouns, long subject–verb gaps and vague references. See the AI assistant notes in DECISIONS.md.
 - Sparkle auto-update, notarized DMG, Homebrew cask (D-14).
 - Full accessibility pass, localization scaffolding.
 
 ### After v1
 - Pandoc export (DOCX, EPUB, LaTeX) when Pandoc is installed (D-11).
-- Bring-your-own-key AI assistant focused on clarity edits, shown as diffs (D-21).
+- Possibly: clarity hints and an AI assistant (D-21, deferred).
 - Plugin or extension story (D-17).
 
 ## 5. Milestones (rough)
@@ -132,7 +130,7 @@ Target: **macOS 26 Tahoe and later**, Swift 6, Apple silicon and Intel.
 | M2 v0.1 | MVP list above | 2–3 weeks |
 | M3 v0.2 | Feel features | 2–3 weeks |
 | M4 v0.3 | Folders, wiki-links, search, export | 3 weeks |
-| M5 v1.0 | Mermaid, clarity hints, polish, distribution | 3–4 weeks |
+| M5 v1.0 | Mermaid, polish, distribution | 3–4 weeks |
 
 **M1 is the key risk-reduction step.** TextKit 2 has sharp edges: custom fragments, scroll height estimates, and selection across hidden glyphs. If the spike shows problems, fall back to TextKit 1 glyph hiding.
 
@@ -170,9 +168,9 @@ writewell/
 | Math rendering cost while typing | Render off the main thread, cache by hash, show source while editing |
 | Wiki-links pull toward a "notes app" | No backlinks or graph view in v1; links are just navigation |
 | macOS 26-only limits reach | Accepted for v1 (D-12) |
-| Name conflict with the existing WriteWell brand | Decide on the name before the public v0.1 (D-22) |
+| Name conflict with the existing WriteWell brand | Renaming to a coined word (D-22) |
 
 ## 9. Next steps
 
 1. Start the M1 TextKit 2 spike.
-2. Decide whether to keep the name before the first public build.
+2. Pick the new name (D-22), then rename the repo and project.
